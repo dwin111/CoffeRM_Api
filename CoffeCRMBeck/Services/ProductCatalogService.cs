@@ -79,6 +79,25 @@ namespace CoffeCRMBeck.Services
                 return new ProductCatalog() { };
             }
         }
+
+        public async Task<bool> FullEdit(ProductCatalog model)
+        {
+            try
+            {
+                if (model == null)
+                {
+                    return false;
+                }
+                var productCatalogEditModel = await _productCatalogRepository.Edit(model);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+        }
 	}
 }
 

@@ -1,4 +1,5 @@
-﻿using CoffeCRMBeck.Model.ViewModel;
+﻿using CoffeCRMBeck.Model;
+using CoffeCRMBeck.Model.ViewModel;
 using CoffeCRMBeck.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,24 @@ namespace CoffeCRMBeck.Controllers
             }
             catch (Exception ex)
             {
+                return Forbid(ex.Message);
+            }
+        }
+
+        [HttpPost("FullEdit")]
+        public async Task<IActionResult> FullEdit(ProductCatalog productCatalogModel)
+        {
+            try
+            {
+                if (!await _productCatalogService.FullEdit(productCatalogModel))
+                {
+                    return BadRequest();
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
                 return Forbid(ex.Message);
             }
         }
