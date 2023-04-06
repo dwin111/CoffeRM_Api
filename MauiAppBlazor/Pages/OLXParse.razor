@@ -1,0 +1,20 @@
+﻿@page "/olxparce"
+@inherits OLXParseBase
+
+<input type="text" @bind="UrlToRom" />
+
+<button @onclick="LOadOLXPage">Load</button>
+
+@if (PriceRom != "" && PriceRom != null && UrlToRom != null && UrlToRom != "")
+{
+<div class="col card m-2 text-center">
+    <div class="card-body">
+
+            <img src="@Image">
+            <h6 class="card-title">Назва: @Name</h6>
+            <p class="card-text font-monospace" style="font-size: 3vw;">Ціна: @PriceRom</p>
+            <p class="card-text font-monospace" style="font-size: 3vw;">@NumberOfRooms</p>
+    </div>
+</div>
+}
+

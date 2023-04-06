@@ -1,0 +1,221 @@
+﻿@page "/crmcoffe"
+@using MauiAppBlazor.Models;
+@using MauiAppBlazor.Models.Enums;
+@using MauiAppBlazor.Service.Contract;
+
+<div class="row">
+    <div class="col-md-7">
+        @if (fullProductCatalogs == null)
+        {
+            <DisplaySpinner />
+        }
+        else{
+            <h3 class="mb-5">Products</h3>
+
+            int productCount = fullProductCatalogs.Count();
+
+            @if (productCount > 0)
+            {
+                <div class="row  mt-3">
+                    @foreach (var prodGroup in fullProductCatalogs)
+                        {
+                        <div class="col-md-3 mb-2" @onclick="(() => AddProductToCheck(prodGroup.Id))">
+                            <a>
+                            <div class="card">
+                                    <img class="img-thumbnail" src="@prodGroup.ImageURL">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-3">
+                                            @prodGroup.Name
+                                        </h5>
+                                        <p class="card-text">
+                                            <b>@prodGroup.Price.ToString("C")</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        }
+               </div>
+
+            }
+        }
+    </div>
+
+
+    @if (CheclCatalogs == null)
+    {
+        <DisplaySpinner />
+    }
+    else{
+        <div class="col-md-5 " style="background: black; height: 100%; ">
+            @if (CheclCatalogs.Count() > 0)
+                {
+                @foreach (var prodGroup in CheclCatalogs)
+                    {
+                    <div class="card mb-2 mt-2 p-lg-2 my-md-3 " >
+                        <div class="row">
+                            <img class="img-thumbnail col-md-2" src="@prodGroup.ImageURL">
+                            <div class="card-body col-md-2">
+                                <h5 class="card-title mb-2">
+                                    @prodGroup.Name
+                                </h5>
+   
+                            </div>
+                            <div class="card-text col-md-6 mt-3" style="font-size: 2vw">
+                                <button type="button" class="btn btn-secondary" style="font-size: 2vw" @onclick="(() => TakeAwayNumber(prodGroup))">&nbsp-&nbsp</button>
+                                @prodGroup.Number&nbsp;
+                                <button type="button" class="btn btn-secondary" style="font-size: 2vw" @onclick="(() => AddNumber(prodGroup))">&nbsp+&nbsp</button>
+                            </div>
+                            <div class="card-text col-md-1">
+                                <button class="btn btn-secondary" @onclick="(() => DeleteProduct(prodGroup))">X</button>
+                            </div>
+
+                        </div>                       
+                    </div>
+                    }
+
+                <label class="form-control">Сума:&nbsp;@SummPrice.ToString("C")</label>
+                    <div class="row px-lg-2 ">
+
+                    <button type="button" class="col-5 btn btn-danger my-lg-3 py-lg-3"> </button>
+                        <p class="col-2"></p>
+                    <button type="button" class="col-5 btn btn-success my-lg-3 py-lg-3" @onclick="CreateCheck"> </button>
+                    </div>
+
+                }
+            </div>
+}
+</div>
+@code {
+    public IEnumerable<ProductCatalog> fullProductCatalogs { get; set; }
+    public List<ProductCatalogModelView> CheclCatalogs = new();
+    public double SummPrice { get; set; } = 0;                                                                                                                                                     
+
+    public long ClickId { get; set; } = 0;
+    [Inject]
+    public IProductCatalogService ProductCatalogService { get; set; }
+
+    [Inject]
+    public ICheckService CheckService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        fullProductCatalogs = await ProductCatalogService.GetItems();
+    }
+
+
+    public async Task CreateCheck()
+    {
+        try
+        {
+            Dictionary<long, long> ProductsIdAndAmoun = new();
+            foreach (var item in CheclCatalogs)
+            {
+                ProductsIdAndAmoun.Add(item.Id, item.Number);
+            }
+            if (ProductsIdAndAmoun.Count > 0)
+            {
+                await CheckService.NewCheck(0, 1, ProductsIdAndAmoun);
+            }
+        }
+        catch (Exception)
+        {
+            
+            throw;
+        }
+    }
+
+
+    public void AddProductToCheck(long id)
+    {
+        var modelView = CheclCatalogs.FirstOrDefault(cc => cc.Id == id);
+        if (modelView == null)
+        {
+            var model = fullProductCatalogs.FirstOrDefault(fpc => fpc.Id == id);
+            modelView = new ProductCatalogModelView
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    ImageURL = model.ImageURL,
+                    Price = model.Price,
+                    Number = 1,
+                    FullPrice = model.Price,
+                    Type = model.Type
+
+                };
+            CheclCatalogs.Add(modelView);
+            SummerPriceProduct(modelView,true);
+        }
+        else
+        {
+            AddNumber(modelView);
+        }
+
+
+    }
+    public void DeleteProduct(ProductCatalogModelView modelView)
+    {
+        try
+        {
+            SummPrice -= modelView.Price * modelView.Number;
+            CheclCatalogs.Remove(modelView);
+        }
+        catch (Exception)
+        {
+            
+            throw;
+        }
+    }
+    public void AddNumber(ProductCatalogModelView modelView)
+    {
+        modelView.Number++;
+        modelView.FullPrice = modelView.Price * modelView.Number;
+        SummerPriceProduct(modelView, true);
+    }
+    public void TakeAwayNumber(ProductCatalogModelView modelView)
+    {
+        double numbeer = modelView.Number;
+        if (--numbeer > 0)
+        {
+            modelView.Number--;
+            modelView.FullPrice = modelView.Price * modelView.Number;
+            SummerPriceProduct(modelView, false);
+        }
+        else
+        {
+            DeletProductInCheck(modelView);
+        }
+    }
+    public void DeletProductInCheck(ProductCatalogModelView modelView)
+    {
+        try
+        {
+            if (modelView != null)
+            {
+                SummerPriceProduct(modelView, false);
+                CheclCatalogs.Remove(modelView);
+                if (CheclCatalogs.Count <= 0)
+                {
+                    SummPrice = 0;
+                }
+            }
+
+        }
+        catch (Exception)
+        {
+            
+            throw;
+        }
+    }
+    public void SummerPriceProduct(ProductCatalogModelView model, bool ItsAdd)
+    {
+        if (ItsAdd)
+        {
+            SummPrice += model.Price;
+        }
+        else
+        {
+            SummPrice -= model.Price;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+﻿@page "/course"
+@using System.Globalization;
+
+@inherits CourseCalculateBase
+
+ 
+@if (Coures == null)
+{
+    <DisplaySpinner />
+}
+else if (Coures.Count <= 0)
+{
+    <span class="text-danger">NON ELEMENT TO LIST...</span>
+}
+else
+{
+    <h2 class="text-center">Курс приватбанк</h2>
+    <div class="row mt-1">
+    @foreach (var item in Coures)
+    {
+        <div class="col-6 text-center">
+            <div class="card">
+                <div class="card-body">
+                        <h6 class="card-title">Валюта: @item.CCY</h6>
+                        <p class="card-text font-monospace" style="font-size: 3vw;">Продаж: @item.Sale.ToString("0,0.00", CultureInfo.InvariantCulture)</p>
+                        <p class="card-text font-monospace" style="font-size: 3vw;">Купівля: @item.Buy.ToString("0,0.00", CultureInfo.InvariantCulture)</p>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+
+
+
+    <label class="form-label">@CouresUsd $</label>
+    <input type="number" class="form-control" @oninput="OnInputEvent" />
+}
+
+
+
+
+
+
+
