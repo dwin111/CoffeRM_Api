@@ -13,8 +13,8 @@ namespace MauiAppBlazor.Models
         public string Name { get; set; }
         public string ImageURL { get; set; }
         public float Price { get; set; }
-        public float FullPrice { get; set; }
-        public int Number { get; set; }
+        public double TotalPrice { get; set; }
+        public int Amount { get; set; }
         public ProductType Type { get; set; }
     }
 }

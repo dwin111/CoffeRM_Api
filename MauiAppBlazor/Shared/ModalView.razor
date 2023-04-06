@@ -1,0 +1,40 @@
+﻿
+
+
+
+<div class="modal" tabindex="-1" role="dialog" style="display:block">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@TitleText</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="(() => Close.InvokeAsync())">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @BodyContent
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="(() => Close.InvokeAsync())">Скасувати</button>
+                <button type="button" class="btn btn-primary" @onclick="(() => Create.InvokeAsync())">Підтвердити</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    [Parameter]
+    public RenderFragment BodyContent { get; set; }
+
+    [Parameter]
+    public string TitleText { get; set; }
+    [Parameter]
+    public EventCallback Close { get; set; }
+    [Parameter]
+    public EventCallback Create { get; set; }
+
+
+
+}

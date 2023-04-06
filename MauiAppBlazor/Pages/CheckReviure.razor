@@ -26,27 +26,9 @@ else
                 <div class="col-md-3 mb-2">
                     <a>
                         <div class="card h-100 min-vh-75">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">
-                                    Номер чеку: &nbsp @сheck.Id
-                                </h5>
-                                <p class="card-text">
-                                    @foreach (var prodGroup in сheck.Products)
-                                    {
-                                        <div class="card mb-2 mt-2">
-                                            <div class="row">
-                                                <div class="card-body col-md-3">
-                                                    <h5 class="card-title mb-3">
-                                                        @prodGroup.Name &nbsp @prodGroup.Price &nbsp X &nbsp @prodGroup.Amount &nbsp = &nbsp @prodGroup.TotalPrice
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                </p>
-                                <p class="card-text">Вся сума:&nbsp @сheck.Price </p>
-                                <p class="card-text">@сheck.Date.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</p>
-                            </div>
+                           
+                            <CheckView CheckCatalogs="@сheck.Products" TitleText="" TotalPrice="@сheck.Price" Date="@сheck.Date" />
+
                         </div>
                     </a>
                 </div>
