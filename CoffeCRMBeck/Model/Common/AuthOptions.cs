@@ -7,8 +7,8 @@ namespace CoffeCRMBeck.Common
     {
         public string? Issuer { get; set; } // Кто сгенериривал токен
         public string? Audience { get; set; } // Для кого
-        public string? Secret { get; set; } 
-        public int TokenLifetime {get; set;}
+        public string? Secret { get; set; }
+        public int TokenLifetime { get; set; }
         public SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Secret));

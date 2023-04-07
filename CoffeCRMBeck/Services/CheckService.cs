@@ -1,9 +1,6 @@
 ﻿using CoffeCRMBeck.DAL.@interface;
 using CoffeCRMBeck.Model;
-using CoffeCRMBeck.Model.Enums;
 using CoffeCRMBeck.Model.ViewModel;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Principal;
 
 namespace CoffeCRMBeck.Services
 {
@@ -23,26 +20,26 @@ namespace CoffeCRMBeck.Services
 
         public List<Сheck> GetAll()
         {
-            return  _checkRepository.GetAll().ToList();
+            return _checkRepository.GetAll().ToList();
         }
 
         public async Task<bool> Create(CheckViewModel checkViewModel)
         {
             try
             {
-               
-                if(checkViewModel.Products == null || checkViewModel.Products.Count <= 0 || checkViewModel.Worker == null) 
+
+                if (checkViewModel.Products == null || checkViewModel.Products.Count <= 0 || checkViewModel.Worker == null)
                 {
                     return false;
                 }
 
                 float price = 0;
-                foreach(var item in checkViewModel.Products) 
+                foreach (var item in checkViewModel.Products)
                 {
                     price += item.Price;
                 }
 
-                var newCheck = new Сheck() 
+                var newCheck = new Сheck()
                 {
                     Id = 0,
                     Products = checkViewModel.Products,
@@ -65,21 +62,21 @@ namespace CoffeCRMBeck.Services
         {
             try
             {
-                if(Id <= 0)
+                if (Id <= 0)
                 {
                     return new Сheck() { };
                 }
 
                 var chek = _checkRepository.GetAll().FirstOrDefault(ch => ch.Id == Id);
 
-                if(chek == null) 
-                { 
-                    return new Сheck() { }; 
+                if (chek == null)
+                {
+                    return new Сheck() { };
                 }
 
                 return chek;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new Сheck() { };
             }
@@ -93,7 +90,7 @@ namespace CoffeCRMBeck.Services
                     return new() { new Сheck() { } };
                 }
                 var chek = _checkRepository.GetAll();
-                
+
 
                 if (chek == null)
                 {
@@ -115,7 +112,7 @@ namespace CoffeCRMBeck.Services
                 {
                     return new() { new Сheck() { } };
                 }
-                var chek =  _checkRepository.GetAll().Where(ch => ch.Worker.Id == Id);
+                var chek = _checkRepository.GetAll().Where(ch => ch.Worker.Id == Id);
 
                 if (chek == null)
                 {
@@ -133,14 +130,14 @@ namespace CoffeCRMBeck.Services
         {
             try
             {
-                if(check == null)
+                if (check == null)
                 {
                     return false;
                 }
                 await _checkRepository.Edit(check);
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }

@@ -1,6 +1,4 @@
-﻿using CoffeCRMBeck.Model.Enums;
-
-namespace CoffeCRMBeck.Model.ViewModel
+﻿namespace CoffeCRMBeck.Model.ViewModel
 {
     public class CheckViewModel
     {

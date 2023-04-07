@@ -1,7 +1,5 @@
 ﻿using CoffeCRMBeck.Model;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Security.Principal;
 
 namespace CoffeCRMBeck.DAL.Context
 {

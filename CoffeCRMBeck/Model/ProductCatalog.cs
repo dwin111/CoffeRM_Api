@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using CoffeCRMBeck.Model.Enums;
-using Microsoft.EntityFrameworkCore;
+﻿using CoffeCRMBeck.Model.Enums;
 
 namespace CoffeCRMBeck.Model
 {
-	public class ProductCatalog
-	{
+    public class ProductCatalog
+    {
         public long Id { get; set; }
         public string Name { get; set; }
         public string ImageURL { get; set; }

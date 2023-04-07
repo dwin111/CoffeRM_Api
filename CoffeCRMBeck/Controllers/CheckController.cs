@@ -1,13 +1,9 @@
 ﻿using CoffeCRMBeck.DAL.Context;
 using CoffeCRMBeck.Model;
-using CoffeCRMBeck.Model.Enums;
 using CoffeCRMBeck.Model.ViewModel;
 using CoffeCRMBeck.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text.Json;
 
 namespace CoffeCRMBeck.Controllers
 {
@@ -22,7 +18,7 @@ namespace CoffeCRMBeck.Controllers
         private readonly WorkerService _workerService;
         private AppDbContext _db;
         //private int AccountId => int.Parse(User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value); //Other worker id
-        public CheckController(CheckService checkService, ProductService productService, WorkerService workerService, ProductCatalogService productCatalogService , AppDbContext db)
+        public CheckController(CheckService checkService, ProductService productService, WorkerService workerService, ProductCatalogService productCatalogService, AppDbContext db)
         {
             _checkService = checkService;
             _productService = productService;
@@ -77,7 +73,7 @@ namespace CoffeCRMBeck.Controllers
         }
 
         [HttpPost("NewCheck/{checkId}/{workerId}")]
-        public async Task<IActionResult> CreateCheckFromId(long? checkId, long workerId, Dictionary<long,long> ProductsIdAnda)
+        public async Task<IActionResult> CreateCheckFromId(long? checkId, long workerId, Dictionary<long, long> ProductsIdAnda)
         {
             try
             {
@@ -166,7 +162,7 @@ namespace CoffeCRMBeck.Controllers
 
 
 
-        
+
         // if checkId == 0 then dont check
         [HttpGet("NewCheckWithId/{checkId}/{workerId}/{productId}/{amoutProduct}")]
         public async Task<IActionResult> CreateCheckWithId(long? checkId, long workerId, int productId, long amoutProduct)
@@ -183,10 +179,10 @@ namespace CoffeCRMBeck.Controllers
                 if (checkId == null || checkId == 0)
                 {
                     product = new Product()
-                    { 
+                    {
                         Id = 0,
                         Name = productCatalog.Name,
-                        Price= productCatalog.Price,
+                        Price = productCatalog.Price,
                         Amount = amoutProduct,
                         Date = DateTime.UtcNow,
                         TotalPrice = productCatalog.Price,
@@ -209,7 +205,7 @@ namespace CoffeCRMBeck.Controllers
                     {
                         product = await _productService.GetByNameAndById(item.Id, productCatalog.Name);
                     }
-                    if(product == null || product.Name == null)
+                    if (product == null || product.Name == null)
                     {
                         product = new Product()
                         {

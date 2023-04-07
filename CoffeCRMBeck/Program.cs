@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
+﻿using CoffeCRMBeck.Common;
+using CoffeCRMBeck.DAL;
 using CoffeCRMBeck.DAL.Context;
-using System;
-using CoffeCRMBeck.Common;
-using System.Diagnostics;
-using CoffeCRMBeck.Service;
 using CoffeCRMBeck.DAL.@interface;
 using CoffeCRMBeck.Model;
-using CoffeCRMBeck.DAL;
+using CoffeCRMBeck.Service;
 using CoffeCRMBeck.Services;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,8 +25,13 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
     builder =>
     {
-        builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+        builder
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
     }));
+
 
 
 //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -1,8 +1,7 @@
-﻿using System;
-namespace CoffeCRMBeck
+﻿namespace CoffeCRMBeck
 {
-	public static class Configure
-	{
+    public static class Configure
+    {
         public const string URL_FRONTEND_SITE = "http://localhost:3000";
         public const string URL_BECEND_SITE = "http://localhost:5014";
         //Mail Sender

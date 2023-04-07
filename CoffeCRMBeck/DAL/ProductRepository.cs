@@ -1,12 +1,11 @@
-﻿using System;
-using CoffeCRMBeck.DAL.Context;
-using CoffeCRMBeck.Model;
+﻿using CoffeCRMBeck.DAL.Context;
 using CoffeCRMBeck.DAL.@interface;
+using CoffeCRMBeck.Model;
 
 
 namespace CoffeCRMBeck.DAL
 {
-	public class ProductRepository : IRepository<Product>
+    public class ProductRepository : IRepository<Product>
     {
         private readonly AppDbContext _db;
 
@@ -44,7 +43,7 @@ namespace CoffeCRMBeck.DAL
                     return false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;

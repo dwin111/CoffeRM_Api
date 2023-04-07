@@ -1,14 +1,13 @@
-﻿using System;
-using CoffeCRMBeck.DAL.@interface;
+﻿using CoffeCRMBeck.DAL.@interface;
 using CoffeCRMBeck.Model;
 using CoffeCRMBeck.Model.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoffeCRMBeck.Services
 {
-	public class ProductCatalogService
-	{
-		
+    public class ProductCatalogService
+    {
+
         private IRepository<ProductCatalog> _productCatalogRepository;
 
         public ProductCatalogService(IRepository<ProductCatalog> productCatalogRepository)
@@ -32,7 +31,7 @@ namespace CoffeCRMBeck.Services
 
                 foreach (var item in GetAll().Result)
                 {
-                    if(item.Name == productViewModel.Name)
+                    if (item.Name == productViewModel.Name)
                     {
                         return false;
                     }
@@ -98,6 +97,6 @@ namespace CoffeCRMBeck.Services
                 return false;
             }
         }
-	}
+    }
 }
 

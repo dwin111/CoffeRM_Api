@@ -1,9 +1,6 @@
 ﻿using CoffeCRMBeck.DAL.@interface;
 using CoffeCRMBeck.Model;
-using CoffeCRMBeck.Model.Enums;
 using CoffeCRMBeck.Model.ViewModel;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Principal;
 
 namespace CoffeCRMBeck.Services
 {
@@ -22,7 +19,7 @@ namespace CoffeCRMBeck.Services
 
         public async Task<List<Product>> GetAll()
         {
-            return  _productRepository.GetAll().ToList();
+            return _productRepository.GetAll().ToList();
         }
 
         public async Task<bool> Create(ProductViewModel productViewModel)
@@ -34,12 +31,12 @@ namespace CoffeCRMBeck.Services
                     return false;
                 }
 
-                var newModel= new Product()
+                var newModel = new Product()
                 {
                     Id = 0,
-                    Name  = productViewModel.Name,
+                    Name = productViewModel.Name,
                     Price = productViewModel.Price,
-                    Type  = productViewModel.Type,
+                    Type = productViewModel.Type,
                 };
 
                 await _productRepository.Create(newModel);

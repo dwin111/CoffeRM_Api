@@ -1,12 +1,11 @@
-﻿using System;
-using CoffeCRMBeck.DAL.Context;
-using CoffeCRMBeck.Model;
+﻿using CoffeCRMBeck.DAL.Context;
 using CoffeCRMBeck.DAL.@interface;
+using CoffeCRMBeck.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoffeCRMBeck.DAL
 {
-	public class CheckRepository : IRepository<Сheck>
+    public class CheckRepository : IRepository<Сheck>
     {
         private readonly AppDbContext _db;
 
@@ -52,7 +51,7 @@ namespace CoffeCRMBeck.DAL
                     return false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
@@ -63,7 +62,7 @@ namespace CoffeCRMBeck.DAL
         {
             return _db.Сhecks.Include(p => p.Products).Include(p => p.Worker);
         }
-        
+
     }
 }
 

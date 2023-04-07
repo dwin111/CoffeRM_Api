@@ -1,7 +1,6 @@
 ﻿using CoffeCRMBeck.Model;
 using CoffeCRMBeck.Model.ViewModel;
 using CoffeCRMBeck.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -35,7 +34,7 @@ namespace CoffeCRMBeck.Controllers
         {
             try
             {
-                if(!await _productCatalogService.Create(productViewModel))
+                if (!await _productCatalogService.Create(productViewModel))
                 {
                     return BadRequest();
                 }

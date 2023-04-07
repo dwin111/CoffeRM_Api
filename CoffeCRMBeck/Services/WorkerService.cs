@@ -1,9 +1,6 @@
 ﻿using CoffeCRMBeck.DAL.@interface;
 using CoffeCRMBeck.Model;
-using CoffeCRMBeck.Model.Enums;
 using CoffeCRMBeck.Model.ViewModel;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Principal;
 
 namespace CoffeCRMBeck.Services
 {
@@ -21,7 +18,7 @@ namespace CoffeCRMBeck.Services
         }
         public async Task<List<Worker>> GetAll()
         {
-            return  _workerRepository.GetAll().ToList();
+            return _workerRepository.GetAll().ToList();
         }
 
         public async Task<bool> Create(WorkerViewModel workerViewModel)
@@ -36,11 +33,11 @@ namespace CoffeCRMBeck.Services
                 var newModel = new Worker()
                 {
                     Id = 0,
-                    Name= workerViewModel.Name,
-                    Email= workerViewModel.Email,
-                    Phone= workerViewModel.Phone,
-                    Roles= workerViewModel.Roles, 
-                    Password= workerViewModel.Password,
+                    Name = workerViewModel.Name,
+                    Email = workerViewModel.Email,
+                    Phone = workerViewModel.Phone,
+                    Roles = workerViewModel.Roles,
+                    Password = workerViewModel.Password,
                 };
 
                 await _workerRepository.Create(newModel);
@@ -61,7 +58,7 @@ namespace CoffeCRMBeck.Services
                     return new Worker() { };
                 }
 
-                var chek =  _workerRepository.GetAll().FirstOrDefault(ch => ch.Id == Id);
+                var chek = _workerRepository.GetAll().FirstOrDefault(ch => ch.Id == Id);
 
                 if (chek == null)
                 {
@@ -74,6 +71,6 @@ namespace CoffeCRMBeck.Services
             {
                 return new Worker() { };
             }
-        } 
+        }
     }
 }

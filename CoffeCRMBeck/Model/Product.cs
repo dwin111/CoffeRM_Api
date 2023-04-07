@@ -1,5 +1,4 @@
 ﻿using CoffeCRMBeck.Model.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoffeCRMBeck.Model
 {

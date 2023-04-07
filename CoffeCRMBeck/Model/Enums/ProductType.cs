@@ -1,9 +1,9 @@
 ﻿namespace CoffeCRMBeck.Model.Enums
 {
-    public enum ProductType 
+    public enum ProductType
     {
-         Coffe,
-         Food,
-         Other
+        Coffe,
+        Food,
+        Other
     }
 }

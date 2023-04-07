@@ -1,6 +1,5 @@
 ﻿using CoffeCRMBeck.Model.ViewModel;
 using CoffeCRMBeck.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeCRMBeck.Controllers

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Runtime.ConstrainedExecution;
-
-namespace CoffeCRMBeck.DAL.@interface
+﻿namespace CoffeCRMBeck.DAL.@interface
 {
-	public interface IRepository<T>
-	{
+    public interface IRepository<T>
+    {
 
         Task<bool> Create(T model);
         Task<bool> Edit(T model);
