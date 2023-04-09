@@ -19,6 +19,7 @@ namespace CoffeCRMBeck.DAL.Context
         //{
         //    modelBuilder.Entity<ProductCatalog>()
         //          .HasKey(m => new { m.Id, m.Name });
+            
         //}
     }
 }

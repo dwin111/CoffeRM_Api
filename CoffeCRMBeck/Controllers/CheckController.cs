@@ -37,7 +37,7 @@ namespace CoffeCRMBeck.Controllers
 
 
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllAsync()
         {
             //var model = _db.Сhecks.Include(p => p.Products).Include(x => x.Worker).ToList();
             var allCheck = _checkService.GetAll();
@@ -59,7 +59,7 @@ namespace CoffeCRMBeck.Controllers
 
 
         [HttpPost("NewCheck")]
-        public async Task<IActionResult> CreateCheck(CheckViewModel checkViewModel)
+        public async Task<IActionResult> CreateCheckAsync(CheckViewModel checkViewModel)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace CoffeCRMBeck.Controllers
         }
 
         [HttpPost("NewCheck/{checkId}/{workerId}")]
-        public async Task<IActionResult> CreateCheckFromId(long? checkId, long workerId, Dictionary<long, long> ProductsIdAnda)
+        public async Task<IActionResult> CreateCheckFromIdAsync(long? checkId, long workerId, Dictionary<long, long> ProductsIdAnda)
         {
             try
             {
@@ -165,12 +165,12 @@ namespace CoffeCRMBeck.Controllers
 
         // if checkId == 0 then dont check
         [HttpGet("NewCheckWithId/{checkId}/{workerId}/{productId}/{amoutProduct}")]
-        public async Task<IActionResult> CreateCheckWithId(long? checkId, long workerId, int productId, long amoutProduct)
+        public async Task<IActionResult> CreateCheckWithIdAsync(long? checkId, long workerId, int productId, long amoutProduct)
         {
             try
             {
-                var productCatalog = await _productCatalogService.GetById(productId);
-                var worker = await _workerService.GetById(workerId);
+                var productCatalog = await _productCatalogService.GetByIdAsync(productId);
+                var worker = await _workerService.GetByIdAsync(workerId);
                 Product product = null;
                 if (productCatalog == null || worker == null)
                 {
@@ -194,16 +194,16 @@ namespace CoffeCRMBeck.Controllers
                         Products = new() { product },
                         Worker = worker
                     };
-                    await _checkService.Create(check);
+                    await _checkService.CreateAsync(check);
                     return Ok();
                 }
                 else
                 {
-                    var check = await _checkService.GetById((long)checkId);
+                    var check = await _checkService.GetByIdAsync(long)checkId);
                     var products = check.Products;
                     foreach (var item in products)
                     {
-                        product = await _productService.GetByNameAndById(item.Id, productCatalog.Name);
+                        product = await _productService.GetByNameAndByIdAsync(item.Id, productCatalog.Name);
                     }
                     if (product == null || product.Name == null)
                     {
@@ -226,7 +226,7 @@ namespace CoffeCRMBeck.Controllers
                         product.TotalPrice += product.Price;
                     }
 
-                    if (!_checkService.Edit(check).Result)
+                    if (!_checkService.EditAsync(check).Result)
                     {
                         return NotFound();
                     }

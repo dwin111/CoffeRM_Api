@@ -15,7 +15,7 @@ namespace CoffeCRMBeck.Services
             _productCatalogRepository = productCatalogRepository;
         }
 
-        public async Task<List<ProductCatalog>> GetAll()
+        public async Task<List<ProductCatalog>> GetAllAsync()
         {
             return await _productCatalogRepository.GetAll().ToListAsync();
         }
@@ -46,7 +46,7 @@ namespace CoffeCRMBeck.Services
                     Type = productViewModel.Type,
                 };
 
-                await _productCatalogRepository.Create(newModel);
+                await _productCatalogRepository.CreateAsync(newModel);
                 return true;
 
             }
@@ -55,7 +55,7 @@ namespace CoffeCRMBeck.Services
                 return false;
             }
         }
-        public async Task<ProductCatalog> GetById(long Id)
+        public async Task<ProductCatalog> GetByIdAsync(long Id)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace CoffeCRMBeck.Services
             }
         }
 
-        public async Task<bool> FullEdit(ProductCatalog model)
+        public async Task<bool> FullEditAsync(ProductCatalog model)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace CoffeCRMBeck.Services
                 {
                     return false;
                 }
-                var productCatalogEditModel = await _productCatalogRepository.Edit(model);
+                var productCatalogEditModel = await _productCatalogRepository.EditAsync(model);
 
                 return true;
             }

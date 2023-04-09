@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeCRMBeck", "CoffeCRMBeck\CoffeCRMBeck.csproj", "{F36A1812-36BB-4147-84EB-9E0A09420496}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeCRMBeck.Test", "CoffeCRMBeck.Test\CoffeCRMBeck.Test.csproj", "{8051BE57-894B-4A4A-B2E8-9D081E521503}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F36A1812-36BB-4147-84EB-9E0A09420496}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F36A1812-36BB-4147-84EB-9E0A09420496}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F36A1812-36BB-4147-84EB-9E0A09420496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8051BE57-894B-4A4A-B2E8-9D081E521503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8051BE57-894B-4A4A-B2E8-9D081E521503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8051BE57-894B-4A4A-B2E8-9D081E521503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8051BE57-894B-4A4A-B2E8-9D081E521503}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

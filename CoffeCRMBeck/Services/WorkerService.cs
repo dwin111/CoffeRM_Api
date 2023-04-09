@@ -16,12 +16,12 @@ namespace CoffeCRMBeck.Services
             _workerRepository = workerRepository;
             _productRepository = productRepository;
         }
-        public async Task<List<Worker>> GetAll()
+        public async Task<List<Worker>> GetAllAsync()
         {
             return _workerRepository.GetAll().ToList();
         }
 
-        public async Task<bool> Create(WorkerViewModel workerViewModel)
+        public async Task<bool> CreateAsync(WorkerViewModel workerViewModel)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace CoffeCRMBeck.Services
                     Password = workerViewModel.Password,
                 };
 
-                await _workerRepository.Create(newModel);
+                await _workerRepository.CreateAsync(newModel);
                 return true;
 
             }
@@ -49,7 +49,7 @@ namespace CoffeCRMBeck.Services
                 return false;
             }
         }
-        public async Task<Worker> GetById(long Id)
+        public async Task<Worker> GetByIdAsync(long Id)
         {
             try
             {

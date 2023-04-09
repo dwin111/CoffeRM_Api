@@ -17,12 +17,12 @@ namespace CoffeCRMBeck.Services
             _productRepository = productRepository;
         }
 
-        public async Task<List<Product>> GetAll()
+        public async Task<List<Product>> GetAllAsync()
         {
             return _productRepository.GetAll().ToList();
         }
 
-        public async Task<bool> Create(ProductViewModel productViewModel)
+        public async Task<bool> CreateAsync(ProductViewModel productViewModel)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace CoffeCRMBeck.Services
                     Type = productViewModel.Type,
                 };
 
-                await _productRepository.Create(newModel);
+                await _productRepository.CreateAsync(newModel);
                 return true;
 
             }
@@ -48,7 +48,7 @@ namespace CoffeCRMBeck.Services
                 return false;
             }
         }
-        public async Task<Product> GetById(long Id)
+        public async Task<Product> GetByIdAsync(long Id)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace CoffeCRMBeck.Services
             }
         }
 
-        public async Task<Product> GetByNameAndById(long Id, string name)
+        public async Task<Product> GetByNameAndByIdAsync(long Id, string name)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace CoffeCRMBeck.Services
             }
         }
 
-        public async Task<Product> GetByName(string name)
+        public async Task<Product> GetByNameAsync(string name)
         {
             try
             {

@@ -19,9 +19,9 @@ namespace CoffeCRMBeck.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllAsync()
         {
-            var allCheck = await _productCatalogService.GetAll();
+            var allCheck = await _productCatalogService.GetAllAsync();
             if (allCheck == null)
             {
                 return NotFound();
@@ -30,7 +30,7 @@ namespace CoffeCRMBeck.Controllers
         }
 
         [HttpPost("NewProduct")]
-        public async Task<IActionResult> Create(ProductCatalogViewModel productViewModel)
+        public async Task<IActionResult> CreateAsync(ProductCatalogViewModel productViewModel)
         {
             try
             {
@@ -47,11 +47,11 @@ namespace CoffeCRMBeck.Controllers
         }
 
         [HttpPost("FullEdit")]
-        public async Task<IActionResult> FullEdit(ProductCatalog productCatalogModel)
+        public async Task<IActionResult> FullEditAsync(ProductCatalog productCatalogModel)
         {
             try
             {
-                if (!await _productCatalogService.FullEdit(productCatalogModel))
+                if (!await _productCatalogService.FullEditAsync(productCatalogModel))
                 {
                     return BadRequest();
                 }

@@ -15,7 +15,7 @@ namespace CoffeCRMBeck.DAL
         }
 
 
-        public async Task<bool> Create(Product model)
+        public async Task<bool> CreateAsync(Product model)
         {
             if (model != null)
             {
@@ -28,7 +28,7 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
-        public async Task<bool> Edit(Product model)
+        public async Task<bool> EditAsync(Product model)
         {
             try
             {

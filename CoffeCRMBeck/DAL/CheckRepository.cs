@@ -15,7 +15,7 @@ namespace CoffeCRMBeck.DAL
         }
 
 
-        public async Task<bool> Create(Сheck model)
+        public async Task<bool> CreateAsync(Сheck model)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
-        public async Task<bool> Edit(Сheck model)
+        public async Task<bool> EditAsync(Сheck model)
         {
             try
             {

@@ -23,7 +23,7 @@ namespace CoffeCRMBeck.Services
             return _checkRepository.GetAll().ToList();
         }
 
-        public async Task<bool> Create(CheckViewModel checkViewModel)
+        public async Task<bool> CreateAsync(CheckViewModel checkViewModel)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace CoffeCRMBeck.Services
                     Price = price,
                 };
 
-                await _checkRepository.Create(newCheck);
+                await _checkRepository.CreateAsync(newCheck);
                 return true;
 
             }
@@ -58,7 +58,7 @@ namespace CoffeCRMBeck.Services
             }
         }
 
-        public async Task<Сheck> GetById(long Id)
+        public async Task<Сheck> GetByIdAsync(long Id)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace CoffeCRMBeck.Services
                 return new Сheck() { };
             }
         }
-        public async Task<List<Сheck>> GetByProductId(long Id)
+        public async Task<List<Сheck>> GetByProductIdAsync(long Id)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace CoffeCRMBeck.Services
                 return new() { new Сheck() { } };
             }
         }
-        public async Task<List<Сheck>> GetByWorkerId(long Id)
+        public async Task<List<Сheck>> GetByWorkerIdAsync(long Id)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace CoffeCRMBeck.Services
                 return new() { new Сheck() { } };
             }
         }
-        public async Task<bool> Edit(Сheck check)
+        public async Task<bool> EditAsync(Сheck check)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace CoffeCRMBeck.Services
                 {
                     return false;
                 }
-                await _checkRepository.Edit(check);
+                await _checkRepository.EditAsync(check);
                 return true;
             }
             catch (Exception ex)

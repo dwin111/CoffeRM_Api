@@ -3,8 +3,8 @@
     public interface IRepository<T>
     {
 
-        Task<bool> Create(T model);
-        Task<bool> Edit(T model);
+        Task<bool> CreateAsync(T model);
+        Task<bool> EditAsync(T model);
         IQueryable<T> GetAll();
 
     }

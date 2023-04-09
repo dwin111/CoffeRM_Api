@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CoffeCRMBeck.Model
 {
+
     public class Login
     {
         [System.ComponentModel.DataAnnotations.Required]

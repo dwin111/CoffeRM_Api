@@ -14,7 +14,7 @@ namespace CoffeCRMBeck.DAL
             _db = db;
         }
 
-        public async Task<bool> Create(Worker model)
+        public async Task<bool> CreateAsync(Worker model)
         {
             if (model != null)
             {
@@ -27,7 +27,7 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
-        public async Task<bool> Edit(Worker model)
+        public async Task<bool> EditAsync(Worker model)
         {
             try
             {
