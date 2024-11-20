@@ -23,8 +23,8 @@ namespace CoffeCRMBeck.Test.Controller
         public void ProductCatalogController_GetAll_ReturnOk()
         {
             //Arrange
-            var productCatalogs = A.Fake<ICollection<ProductCatalog>>();
-            var productCatalogList = A.Fake<List<ProductCatalog>>();
+            var productCatalogs = A.Fake<ICollection<Menu>>();
+            var productCatalogList = A.Fake<List<Menu>>();
             var controller = new ProductCatalogController(_productCatalogService);
 
             //Act

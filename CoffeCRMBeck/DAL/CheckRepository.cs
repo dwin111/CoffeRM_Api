@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoffeCRMBeck.DAL
 {
-    public class CheckRepository : IRepository<Сheck>
+    public class CheckRepository : IRepository<Bill>
     {
         private readonly AppDbContext _db;
 
@@ -15,13 +15,13 @@ namespace CoffeCRMBeck.DAL
         }
 
 
-        public async Task<bool> CreateAsync(Сheck model)
+        public async Task<bool> CreateAsync(Bill model)
         {
             try
             {
                 if (model != null)
                 {
-                    await _db.Сhecks.AddAsync(model);
+                    await _db.Bill.AddAsync(model);
                     await _db.SaveChangesAsync();
                     return true;
                 }
@@ -36,13 +36,13 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
-        public async Task<bool> EditAsync(Сheck model)
+        public async Task<bool> EditAsync(Bill model)
         {
             try
             {
                 if (model != null)
                 {
-                    _db.Сhecks.Update(model);
+                    _db.Bill.Update(model);
                     await _db.SaveChangesAsync();
                     return true;
                 }
@@ -58,9 +58,9 @@ namespace CoffeCRMBeck.DAL
             }
         }
 
-        public IQueryable<Сheck> GetAll()
+        public IQueryable<Bill> GetAll()
         {
-            return _db.Сhecks.Include(p => p.Products).Include(p => p.Worker);
+            return _db.Bill.Include(p => p.Orders).Include(p => p.Staff);
         }
 
     }

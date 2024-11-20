@@ -6,18 +6,18 @@ namespace CoffeCRMBeck.Services
 {
     public class ProductService
     {
-        private IRepository<Сheck> _checkRepository;
-        private IRepository<Worker> _workerRepository;
-        private IRepository<Product> _productRepository;
+        private IRepository<Bill> _checkRepository;
+        private IRepository<Staff> _workerRepository;
+        private IRepository<Order> _productRepository;
 
-        public ProductService(IRepository<Сheck> checkRepository, IRepository<Worker> workerRepository, IRepository<Product> productRepository)
+        public ProductService(IRepository<Bill> checkRepository, IRepository<Staff> workerRepository, IRepository<Order> productRepository)
         {
             _checkRepository = checkRepository;
             _workerRepository = workerRepository;
             _productRepository = productRepository;
         }
 
-        public async Task<List<Product>> GetAllAsync()
+        public async Task<List<Order>> GetAllAsync()
         {
             return _productRepository.GetAll().ToList();
         }
@@ -31,7 +31,7 @@ namespace CoffeCRMBeck.Services
                     return false;
                 }
 
-                var newModel = new Product()
+                var newModel = new Order()
                 {
                     Id = 0,
                     Name = productViewModel.Name,
@@ -48,75 +48,75 @@ namespace CoffeCRMBeck.Services
                 return false;
             }
         }
-        public async Task<Product> GetByIdAsync(long Id)
+        public async Task<Order> GetByIdAsync(long Id)
         {
             try
             {
                 if (Id <= 0)
                 {
-                    return new Product() { };
+                    return new Order() { };
                 }
 
                 var model = _productRepository.GetAll().FirstOrDefault(ch => ch.Id == Id);
 
                 if (model == null)
                 {
-                    return new Product() { };
+                    return new Order() { };
                 }
 
                 return model;
             }
             catch (Exception ex)
             {
-                return new Product() { };
+                return new Order() { };
             }
         }
 
-        public async Task<Product> GetByNameAndByIdAsync(long Id, string name)
+        public async Task<Order> GetByNameAndByIdAsync(long Id, string name)
         {
             try
             {
                 if (name.Count() <= 0)
                 {
-                    return new Product() { };
+                    return new Order() { };
                 }
 
                 var model = _productRepository.GetAll().FirstOrDefault(ch => ch.Name == name && ch.Id == Id);
 
                 if (model == null)
                 {
-                    return new Product() { };
+                    return new Order() { };
                 }
 
                 return model;
             }
             catch (Exception ex)
             {
-                return new Product() { };
+                return new Order() { };
             }
         }
 
-        public async Task<Product> GetByNameAsync(string name)
+        public async Task<Order> GetByNameAsync(string name)
         {
             try
             {
                 if (name.Count() <= 0)
                 {
-                    return new Product() { };
+                    return new Order() { };
                 }
 
                 var model = _productRepository.GetAll().FirstOrDefault(ch => ch.Name == name);
 
                 if (model == null)
                 {
-                    return new Product() { };
+                    return new Order() { };
                 }
 
                 return model;
             }
             catch (Exception ex)
             {
-                return new Product() { };
+                return new Order() { };
             }
         }
     }

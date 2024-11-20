@@ -8,14 +8,14 @@ namespace CoffeCRMBeck.Services
     public class ProductCatalogService
     {
 
-        private IRepository<ProductCatalog> _productCatalogRepository;
+        private IRepository<Menu> _productCatalogRepository;
 
-        public ProductCatalogService(IRepository<ProductCatalog> productCatalogRepository)
+        public ProductCatalogService(IRepository<Menu> productCatalogRepository)
         {
             _productCatalogRepository = productCatalogRepository;
         }
 
-        public async Task<List<ProductCatalog>> GetAllAsync()
+        public async Task<List<Menu>> GetAllAsync()
         {
             return await _productCatalogRepository.GetAll().ToListAsync();
         }
@@ -29,7 +29,7 @@ namespace CoffeCRMBeck.Services
                     return false;
                 }
 
-                foreach (var item in GetAll().Result)
+                foreach (var item in GetAllAsync().Result)
                 {
                     if (item.Name == productViewModel.Name)
                     {
@@ -37,7 +37,7 @@ namespace CoffeCRMBeck.Services
                     }
                 }
 
-                var newModel = new ProductCatalog()
+                var newModel = new Menu()
                 {
                     Id = 0,
                     Name = productViewModel.Name,
@@ -55,31 +55,31 @@ namespace CoffeCRMBeck.Services
                 return false;
             }
         }
-        public async Task<ProductCatalog> GetByIdAsync(long Id)
+        public async Task<Menu> GetByIdAsync(long Id)
         {
             try
             {
                 if (Id <= 0)
                 {
-                    return new ProductCatalog() { };
+                    return new Menu() { };
                 }
 
                 var model = _productCatalogRepository.GetAll().FirstOrDefault(ch => ch.Id == Id);
 
                 if (model == null)
                 {
-                    return new ProductCatalog() { };
+                    return new Menu() { };
                 }
 
                 return model;
             }
             catch (Exception ex)
             {
-                return new ProductCatalog() { };
+                return new Menu() { };
             }
         }
 
-        public async Task<bool> FullEditAsync(ProductCatalog model)
+        public async Task<bool> FullEditAsync(Menu model)
         {
             try
             {

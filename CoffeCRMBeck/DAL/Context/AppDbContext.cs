@@ -5,10 +5,10 @@ namespace CoffeCRMBeck.DAL.Context
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Сheck> Сhecks { get; set; }
-        public DbSet<Worker> Workers { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCatalog> ProductCatalogs { get; set; }
+        public DbSet<Bill> Bill { get; set; }
+        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Menu> Menu { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {

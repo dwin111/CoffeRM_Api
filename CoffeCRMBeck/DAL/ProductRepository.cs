@@ -5,7 +5,7 @@ using CoffeCRMBeck.Model;
 
 namespace CoffeCRMBeck.DAL
 {
-    public class ProductRepository : IRepository<Product>
+    public class ProductRepository : IRepository<Order>
     {
         private readonly AppDbContext _db;
 
@@ -15,11 +15,11 @@ namespace CoffeCRMBeck.DAL
         }
 
 
-        public async Task<bool> CreateAsync(Product model)
+        public async Task<bool> CreateAsync(Order model)
         {
             if (model != null)
             {
-                await _db.Products.AddAsync(model);
+                await _db.Order.AddAsync(model);
                 await _db.SaveChangesAsync();
                 return true;
             }
@@ -28,13 +28,13 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
-        public async Task<bool> EditAsync(Product model)
+        public async Task<bool> EditAsync(Order model)
         {
             try
             {
                 if (model != null)
                 {
-                    _db.Products.Update(model);
+                    _db.Order.Update(model);
                     await _db.SaveChangesAsync();
                     return true;
                 }
@@ -50,9 +50,9 @@ namespace CoffeCRMBeck.DAL
             }
         }
 
-        public IQueryable<Product> GetAll()
+        public IQueryable<Order> GetAll()
         {
-            return _db.Products;
+            return _db.Order;
         }
     }
 }

@@ -6,10 +6,10 @@ namespace CoffeCRMBeck.Model
     {
         public int Id { get; set; }
 
-        [ForeignKey(nameof(Product))]
-        public long ProductId { get; set; }
+        [ForeignKey(nameof(Order))]
+        public long OrderId { get; set; }
 
-        [ForeignKey(nameof(Сheck))]
-        public long СheckId { get; set; }
+        [ForeignKey(nameof(Bill))]
+        public long BillId { get; set; }
     }
 }

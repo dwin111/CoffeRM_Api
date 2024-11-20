@@ -2,8 +2,8 @@
 {
     public class CheckViewModel
     {
-        public List<Product> Products { get; set; }
-        public Worker Worker { get; set; }
+        public List<Order> Orders { get; set; }
+        public Staff Staff { get; set; }
 
 
     }

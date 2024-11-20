@@ -47,7 +47,7 @@ namespace CoffeCRMBeck.Controllers
         }
 
         [HttpPost("FullEdit")]
-        public async Task<IActionResult> FullEditAsync(ProductCatalog productCatalogModel)
+        public async Task<IActionResult> FullEditAsync(Menu productCatalogModel)
         {
             try
             {

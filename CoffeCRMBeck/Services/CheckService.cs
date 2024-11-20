@@ -6,19 +6,19 @@ namespace CoffeCRMBeck.Services
 {
     public class CheckService
     {
-        private IRepository<Сheck> _checkRepository;
-        private IRepository<Worker> _workerRepository;
-        private IRepository<Product> _productRepository;
+        private IRepository<Bill> _checkRepository;
+        private IRepository<Staff> _StaffRepository;
+        private IRepository<Order> _productRepository;
 
 
-        public CheckService(IRepository<Сheck> checkRepository, IRepository<Worker> workerRepository, IRepository<Product> productRepository)
+        public CheckService(IRepository<Bill> checkRepository, IRepository<Staff> StaffRepository, IRepository<Order> productRepository)
         {
             _checkRepository = checkRepository;
-            _workerRepository = workerRepository;
+            _StaffRepository = StaffRepository;
             _productRepository = productRepository;
         }
 
-        public List<Сheck> GetAll()
+        public List<Bill> GetAll()
         {
             return _checkRepository.GetAll().ToList();
         }
@@ -28,22 +28,22 @@ namespace CoffeCRMBeck.Services
             try
             {
 
-                if (checkViewModel.Products == null || checkViewModel.Products.Count <= 0 || checkViewModel.Worker == null)
+                if (checkViewModel.Orders == null || checkViewModel.Orders.Count <= 0 || checkViewModel.Staff == null)
                 {
                     return false;
                 }
 
                 float price = 0;
-                foreach (var item in checkViewModel.Products)
+                foreach (var item in checkViewModel.Orders)
                 {
                     price += item.Price;
                 }
 
-                var newCheck = new Сheck()
+                var newCheck = new Bill()
                 {
                     Id = 0,
-                    Products = checkViewModel.Products,
-                    Worker = checkViewModel.Worker,
+                    Orders = checkViewModel.Orders,
+                    Staff = checkViewModel.Staff,
                     Date = DateTime.UtcNow,
                     Price = price,
                 };
@@ -58,75 +58,75 @@ namespace CoffeCRMBeck.Services
             }
         }
 
-        public async Task<Сheck> GetByIdAsync(long Id)
+        public async Task<Bill> GetByIdAsync(long Id)
         {
             try
             {
                 if (Id <= 0)
                 {
-                    return new Сheck() { };
+                    return new Bill() { };
                 }
 
                 var chek = _checkRepository.GetAll().FirstOrDefault(ch => ch.Id == Id);
 
                 if (chek == null)
                 {
-                    return new Сheck() { };
+                    return new Bill() { };
                 }
 
                 return chek;
             }
             catch (Exception ex)
             {
-                return new Сheck() { };
+                return new Bill() { };
             }
         }
-        public async Task<List<Сheck>> GetByProductIdAsync(long Id)
+        public async Task<List<Bill>> GetByProductIdAsync(long Id)
         {
             try
             {
                 if (Id <= 0)
                 {
-                    return new() { new Сheck() { } };
+                    return new() { new Bill() { } };
                 }
                 var chek = _checkRepository.GetAll();
 
 
                 if (chek == null)
                 {
-                    return new() { new Сheck() { } };
+                    return new() { new Bill() { } };
                 }
 
                 return chek.ToList();
             }
             catch (Exception ex)
             {
-                return new() { new Сheck() { } };
+                return new() { new Bill() { } };
             }
         }
-        public async Task<List<Сheck>> GetByWorkerIdAsync(long Id)
+        public async Task<List<Bill>> GetByStaffIdAsync(long Id)
         {
             try
             {
                 if (Id <= 0)
                 {
-                    return new() { new Сheck() { } };
+                    return new() { new Bill() { } };
                 }
-                var chek = _checkRepository.GetAll().Where(ch => ch.Worker.Id == Id);
+                var chek = _checkRepository.GetAll().Where(ch => ch.Staff.Id == Id);
 
                 if (chek == null)
                 {
-                    return new() { new Сheck() { } };
+                    return new() { new Bill() { } };
                 }
 
                 return chek.ToList();
             }
             catch (Exception ex)
             {
-                return new() { new Сheck() { } };
+                return new() { new Bill() { } };
             }
         }
-        public async Task<bool> EditAsync(Сheck check)
+        public async Task<bool> EditAsync(Bill check)
         {
             try
             {

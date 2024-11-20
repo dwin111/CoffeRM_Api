@@ -58,7 +58,7 @@ builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=CoffeCRMBase;Username=postgres;Password=16031003").LogTo(Console.WriteLine));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5433;Database=CRMSystem;Username=postgres;Password=1234567890").LogTo(Console.WriteLine));
 
 //Service
 builder.Services.AddTransient<MailService>();
@@ -69,10 +69,10 @@ builder.Services.AddTransient<ProductCatalogService>();
 
 
 //Repository
-builder.Services.AddScoped<IRepository<ProductCatalog>, ProductCatalogRepository>();
-builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
-builder.Services.AddScoped<IRepository<Worker>, WorkerRepository>();
-builder.Services.AddScoped<IRepository<Сheck>, CheckRepository>();
+builder.Services.AddScoped<IRepository<Menu>, ProductCatalogRepository>();
+builder.Services.AddScoped<IRepository<Order>, ProductRepository>();
+builder.Services.AddScoped<IRepository<Staff>, WorkerRepository>();
+builder.Services.AddScoped<IRepository<Bill>, CheckRepository>();
 
 
 

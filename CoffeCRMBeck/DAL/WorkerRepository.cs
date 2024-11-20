@@ -5,7 +5,7 @@ using CoffeCRMBeck.Model;
 
 namespace CoffeCRMBeck.DAL
 {
-    public class WorkerRepository : IRepository<Worker>
+    public class WorkerRepository : IRepository<Staff>
     {
         private readonly AppDbContext _db;
 
@@ -14,11 +14,11 @@ namespace CoffeCRMBeck.DAL
             _db = db;
         }
 
-        public async Task<bool> CreateAsync(Worker model)
+        public async Task<bool> CreateAsync(Staff model)
         {
             if (model != null)
             {
-                await _db.Workers.AddAsync(model);
+                await _db.Staff.AddAsync(model);
                 await _db.SaveChangesAsync();
                 return true;
             }
@@ -27,13 +27,13 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
-        public async Task<bool> EditAsync(Worker model)
+        public async Task<bool> EditAsync(Staff model)
         {
             try
             {
                 if (model != null)
                 {
-                    _db.Workers.Update(model);
+                    _db.Staff.Update(model);
                     await _db.SaveChangesAsync();
                     return true;
                 }
@@ -49,9 +49,9 @@ namespace CoffeCRMBeck.DAL
             }
         }
 
-        public IQueryable<Worker> GetAll()
+        public IQueryable<Staff> GetAll()
         {
-            return _db.Workers;
+            return _db.Staff;
         }
     }
 }
