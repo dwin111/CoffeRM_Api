@@ -27,6 +27,12 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
+
+        public Task<bool> DeleteAsync(Staff model)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> EditAsync(Staff model)
         {
             try
@@ -52,6 +58,11 @@ namespace CoffeCRMBeck.DAL
         public IQueryable<Staff> GetAll()
         {
             return _db.Staff;
+        }
+
+        public Task<Staff> GetByIdAsync(long id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

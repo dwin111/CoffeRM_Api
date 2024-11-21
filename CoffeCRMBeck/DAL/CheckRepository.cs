@@ -36,6 +36,12 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
+
+        public Task<bool> DeleteAsync(Bill model)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> EditAsync(Bill model)
         {
             try
@@ -63,6 +69,10 @@ namespace CoffeCRMBeck.DAL
             return _db.Bill.Include(p => p.Orders).Include(p => p.Staff);
         }
 
+        public Task<Bill> GetByIdAsync(long id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

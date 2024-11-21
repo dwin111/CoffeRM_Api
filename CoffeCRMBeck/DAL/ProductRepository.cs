@@ -28,6 +28,12 @@ namespace CoffeCRMBeck.DAL
                 return false;
             }
         }
+
+        public Task<bool> DeleteAsync(Order model)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> EditAsync(Order model)
         {
             try
@@ -53,6 +59,11 @@ namespace CoffeCRMBeck.DAL
         public IQueryable<Order> GetAll()
         {
             return _db.Order;
+        }
+
+        public Task<Order> GetByIdAsync(long id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

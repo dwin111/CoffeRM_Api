@@ -55,16 +55,16 @@ namespace CoffeCRMBeck.Services
                 return false;
             }
         }
-        public async Task<Menu> GetByIdAsync(long Id)
+        public async Task<Menu> GetByIdAsync(long id)
         {
             try
             {
-                if (Id <= 0)
+                if (id <= 0)
                 {
                     return new Menu() { };
                 }
 
-                var model = _productCatalogRepository.GetAll().FirstOrDefault(ch => ch.Id == Id);
+                var model = await _productCatalogRepository.GetByIdAsync(id);
 
                 if (model == null)
                 {
@@ -88,6 +88,24 @@ namespace CoffeCRMBeck.Services
                     return false;
                 }
                 var productCatalogEditModel = await _productCatalogRepository.EditAsync(model);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+        }
+        public async Task<bool> DeleteAsync(Menu model)
+        {
+            try
+            {
+                if (model == null)
+                {
+                    return false;
+                }
+                var productCatalogEditModel = await _productCatalogRepository.DeleteAsync(model);
 
                 return true;
             }

@@ -18,6 +18,17 @@ namespace CoffeCRMBeck.Controllers
             _productCatalogService = productCatalogService;
         }
 
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetByIdAsync(long id)
+        {
+            var product = await _productCatalogService.GetByIdAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -52,6 +63,23 @@ namespace CoffeCRMBeck.Controllers
             try
             {
                 if (!await _productCatalogService.FullEditAsync(productCatalogModel))
+                {
+                    return BadRequest();
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return Forbid(ex.Message);
+            }
+        }
+        [HttpPost("Delete")]
+        public async Task<IActionResult> Delete(Menu productCatalogModel)
+        {
+            try
+            {
+                if (!await _productCatalogService.DeleteAsync(productCatalogModel))
                 {
                     return BadRequest();
                 }
